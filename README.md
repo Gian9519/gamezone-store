@@ -32,6 +32,7 @@ Tienda virtual de videojuegos ficticia creada como proyecto frontend para demost
 ## Estructura de Archivos
 
 gamezone-store/
+
   ├── index.html
   ├── css/
   │   └── styles.css
