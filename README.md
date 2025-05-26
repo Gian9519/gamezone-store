@@ -32,7 +32,6 @@ Tienda virtual de videojuegos ficticia creada como proyecto frontend para demost
 ## Estructura de Archivos
 
 gamezone-store/
-
   ├── index.html
   ├── css/
   │   └── styles.css
@@ -48,8 +47,7 @@ gamezone-store/
 ## Hosting
 
 El sitio está disponible en:
-- GitHub Pages: [Ver en vivo](https://tunombre.github.io/gamezone-store)
-- Netlify: [Alternativa](https://gamestore-example.netlify.app)
+- GitHub Pages: [Ver en vivo](https://github.com/Gian9519/gamezone-store)
 
 ## Autor
 
