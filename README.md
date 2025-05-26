@@ -1,54 +1,72 @@
-# GameZone Store - Tienda de Videojuegos
+# 🎮 GameZone Store – Tienda Virtual de Videojuegos
 
 ![GameZone Logo](img/logo.png)
 
-Tienda virtual de videojuegos ficticia creada como proyecto frontend para demostrar habilidades en HTML, CSS y diseño responsivo.
+**GameZone Store** es una tienda ficticia de videojuegos desarrollada como proyecto de frontend. Este sitio demuestra habilidades en **HTML5**, **CSS3**, **Bootstrap** y diseño **responsive**, integrando formularios funcionales y contenido multimedia.
 
-## Características
+---
 
-- Estructura semántica HTML5
-- Diseño responsivo con Flexbox y CSS Grid
-- Formulario de contacto funcional usando Formspree
-- Integración de multimedia (imágenes, videos embebidos)
-- Animaciones y efectos interactivos
-- Compatible con múltiples dispositivos
+## 🚀 Características Principales
 
-## Tecnologías Utilizadas
+* ✅ Estructura semántica con HTML5
+* 📱 Diseño responsivo con **Flexbox** y **CSS Grid**
+* 📩 Formulario de contacto funcional con **Formspree**
+* 🎥 Integración de imágenes y videos embebidos
+* ✨ Animaciones y efectos interactivos
+* 📱 Optimizado para múltiples dispositivos y resoluciones
 
-- HTML5
-- CSS3 (Variables CSS, Flexbox, Grid)
-- Bootstrap 5 (Componentes y sistema de grid)
-- Font Awesome (Iconos)
-- Google Fonts (Tipografía)
-- Formspree (Formularios)
+---
 
-## Cómo Iniciar
+## 🛠️ Tecnologías Utilizadas
 
-1. Clonar el repositorio
-2. Abrir el archivo `index.html` en tu navegador
-3. Navegar por las diferentes secciones
+* **HTML5**
+* **CSS3** (Variables, Flexbox, Grid)
+* **Bootstrap 5** (Sistema de componentes y grid)
+* **Font Awesome** (Íconos vectoriales)
+* **Google Fonts** (Tipografías personalizadas)
+* **Formspree** (Gestión de formularios)
 
+---
 
-## Estructura de Archivos
+## 📂 Cómo Usar este Proyecto
 
+1. Clona el repositorio:
+
+   ```bash
+   git clone https://github.com/Gian9519/gamezone-store.git
+   ```
+2. Abre el archivo `index.html` en tu navegador.
+3. Explora las distintas secciones del sitio: inicio, catálogo, reseñas, contacto y más.
+
+---
+
+## 🗂️ Estructura del Proyecto
+
+```
 gamezone-store/
-  ├── index.html
-  ├── css/
-  │   └── styles.css
-  ├── js/
-  │   └── main.js
-  ├── img/
-  │   ├── logo.png
-  │   ├── gaming-banner.jpg
-  │   └── productos/
-  └── README.md
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── main.js
+├── img/
+│   ├── logo.png
+│   ├── gaming-banner.jpg
+│   └── productos/
+└── README.md
+```
 
+---
 
-## Hosting
+## 🌐 Hosting
 
-El sitio está disponible en:
-- GitHub Pages: [Ver en vivo](https://github.com/Gian9519/gamezone-store)
+Puedes ver el sitio en línea en:
 
-## Autor
+👉 **GitHub Pages**: [gamezone-store en vivo](https://github.com/Gian9519/gamezone-store)
 
-Gianluca Pippolo
+---
+
+## 👨‍💻 Autor
+
+**Gianluca Pippolo**
+Proyecto de Frontend | 2025
