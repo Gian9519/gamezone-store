@@ -35,6 +35,7 @@ h1, h2, h3 {
 
 .navbar {
     background-color: transparent !important;
+    position: relative; /* Para posicionar el contador del carrito */
 }
 
 .navbar-brand img {
@@ -43,6 +44,30 @@ h1, h2, h3 {
 
 .navbar-brand img:hover {
     transform: scale(1.1);
+}
+
+/* Estilos para el contador del carrito (4) */
+.cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart-counter {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 /* Hero Banner */
@@ -57,19 +82,27 @@ h1, h2, h3 {
     animation: fadeIn 1.5s;
 }
 
-/* Sección Productos */
+/* Sección Productos (1 - Flexbox) */
 .product-section {
     padding: 80px 0;
+    /* 5 - Fondo especial */
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(255,94,0,0.05) 0%, rgba(255,94,0,0) 20%),
+        radial-gradient(circle at 90% 80%, rgba(0,119,255,0.08) 0%, rgba(0,119,255,0) 20%),
+        linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
 }
 
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
     margin-top: 40px;
 }
 
 .product-card {
+    flex: 1 1 280px; /* Flexbox responsivo */
+    max-width: 350px;
     background: white;
     border-radius: 10px;
     overflow: hidden;
@@ -124,7 +157,7 @@ h1, h2, h3 {
     background-color: var(--accent-color);
 }
 
-/* Sección Reseñas */
+/* Sección Reseñas (2 - CSS Grid) */
 .reviews-section {
     padding: 80px 0;
     background-color: var(--light-color);
@@ -132,7 +165,7 @@ h1, h2, h3 {
 
 .reviews-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin-top: 40px;
 }
@@ -162,14 +195,14 @@ h1, h2, h3 {
     color: gold;
 }
 
-/* Sección Contacto */
+/* Sección Contacto (3 - Media Queries) */
 .contact-section {
     padding: 80px 0;
 }
 
 .contact-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 50px;
     margin-top: 40px;
 }
@@ -317,66 +350,18 @@ h1, h2, h3 {
 
 /* Media Queries */
 @media (max-width: 992px) {
+    /* 3 - Mejoras responsivas para contacto */
     .contact-container {
         grid-template-columns: 1fr;
     }
-}
-
-@media (max-width: 768px) {
-    .hero-banner h1 {
-        font-size: 2rem;
-    }
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* 1. Grilla de productos con Flexbox (responsiva) */
-.products-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 40px;
-    justify-content: center;
-}
-
-.product-card {
-    flex: 1; /* Las tarjetas crecerán para llenar el espacio */
-    min-width: 280px;
-    max-width: 350px;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-/* 2. Sección de reseñas con CSS Grid mejorada */
-.reviews-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-/* 3. Media Queries para sección contacto (responsiva) */
-.contact-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 50px;
-    margin-top: 40px;
 }
 
 @media (max-width: 800px) {
-    .contact-container {
-        grid-template-columns: 1fr;
+    .hero-banner h1 {
+        font-size: 2rem;
     }
-}
-
-@media (max-width: 576px) {
+    
+    /* 3 - Ajuste adicional para contacto */
     .contact-container {
         padding: 0 15px;
     }
@@ -386,40 +371,22 @@ h1, h2, h3 {
     }
 }
 
-/* 4. Estilos para el contador del carrito */
-.cart-counter {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+@media (max-width: 480px) {
+    /* 1 - Mejor ajuste para tarjetas en móviles */
+    .product-card {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+    
+    /* 3 - Contacto en móviles muy pequeños */
+    .contact-info,
+    .contact-form {
+        padding: 15px;
+    }
 }
 
-.nav-cart {
-    position: relative;
-    margin-left: auto;
-    padding-right: 15px;
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
-/* 5. Aplicar fondo especial a featured products */
-.product-section {
-    padding: 80px 0;
-    /* Fondo degradado con textura geométrica */
-    background: 
-        radial-gradient(circle at 10% 20%, rgba(255,94,0,0.05) 0%, rgba(255,94,0,0) 20%),
-        radial-gradient(circle at 90% 80%, rgba(0,119,255,0.08) 0%, rgba(0,119,255,0) 20%),
-        linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
-}
-
-/* 6. Fuentes ya están incluidas en root y aplicadas */
-
-/* ... (resto del código) ... */
