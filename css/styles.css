@@ -390,3 +390,65 @@ h1, h2, h3 {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ================== ESTILOS ADICIONALES ================== */
+/* Notificaciones */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    animation: slideIn 0.3s forwards, fadeOut 0.5s forwards 2.7s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-50%) translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+/* Errores en formulario */
+.error-message {
+    color: #e53935;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.is-invalid {
+    border: 1px solid #e53935 !important;
+    outline: none;
+}
+
+/* Contador de carrito más visible */
+.cart-counter {
+    background: var(--accent-color) !important;
+    font-size: 0.75rem;
+}
+
+/* Mejoras responsivas */
+@media (max-width: 768px) {
+    .notification {
+        max-width: 90%;
+        text-align: center;
+        padding: 10px 15px;
+    }
+}
