@@ -1,72 +1,122 @@
-# 🎮 GameZone Store – Tienda Virtual de Videojuegos
 
-![GameZone Logo](img/logo.png)
+```markdown
+# 🎮 GameZone Store – Tu Tienda de Videojuegos Next Level
 
-**GameZone Store** es una tienda ficticia de videojuegos desarrollada como proyecto de frontend. Este sitio demuestra habilidades en **HTML5**, **CSS3**, **Bootstrap** y diseño **responsive**, integrando formularios funcionales y contenido multimedia.
+![GameZone Banner](img/gaming-banner.jpg)
 
----
-
-## 🚀 Características Principales
-
-* ✅ Estructura semántica con HTML5
-* 📱 Diseño responsivo con **Flexbox** y **CSS Grid**
-* 📩 Formulario de contacto funcional con **Formspree**
-* 🎥 Integración de imágenes y videos embebidos
-* ✨ Animaciones y efectos interactivos
-* 📱 Optimizado para múltiples dispositivos y resoluciones
+**GameZone Store** es una experiencia de e-commerce inmersiva para gamers, desarrollada con las últimas tecnologías web. Explora un catálogo dinámico, gestión avanzada de carrito y compras interactivas.
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 🌟 Características Destacadas
 
-* **HTML5**
-* **CSS3** (Variables, Flexbox, Grid)
-* **Bootstrap 5** (Sistema de componentes y grid)
-* **Font Awesome** (Íconos vectoriales)
-* **Google Fonts** (Tipografías personalizadas)
-* **Formspree** (Gestión de formularios)
+### 🛒 Sistema Inteligente de Carrito
+- ✅ Añadir/eliminar productos en tiempo real
+- 📱 Persistencia de datos con **LocalStorage**
+- 💰 Cálculo automático de totales e impuestos
+- 🚀 Actualización dinámica sin recargar la página
+- 📦 Gestión de múltiples items con selector de cantidades
+
+### 🔌 Integración con APIs
+- 🌐 Fetch de productos desde [RAWG API](https://api.rawg.io/docs/)
+- 📨 Envío de órdenes a backend personalizado
+- 📩 Formulario de contacto con **Formspree**
+- 🔄 Actualización en tiempo real de stock disponible
+
+### 🎮 Experiencia Gamer
+- 🕹️ Catálogo filtrable por género y plataforma
+- 🎥 Trailers incrustados de YouTube
+- ⭐ Sistema de reseñas y calificaciones
+- 🔍 Búsqueda inteligente de productos
 
 ---
 
-## 📂 Cómo Usar este Proyecto
+## 🛠️ Stack Tecnológico
+
+### Frontend
+- **HTML5** (Semántico + Microdatos)
+- **CSS3** (Animaciones, Variables CSS, Grid/Flexbox)
+- **JavaScript ES6+** (Carrito dinámico)
+- **Bootstrap 5** + Personalización
+- **Swiper.js** (Sliders interactivos)
+
+### Integraciones
+- 🎮 [RAWG Video Games Database API](https://rawg.io/apidocs)
+- 📧 **Formspree** para formularios
+- 📊 **Google Analytics 4** integrado
+
+---
+
+## 🚀 Instalación Local
 
 1. Clona el repositorio:
+```bash
+git clone https://github.com/Gian9519/gamezone-store.git
+cd gamezone-store
+```
 
-   ```bash
-   git clone https://github.com/Gian9519/gamezone-store.git
-   ```
-2. Abre el archivo `index.html` en tu navegador.
-3. Explora las distintas secciones del sitio: inicio, catálogo, reseñas, contacto y más.
+2. Instala las dependencias (opcional para Sass):
+```bash
+npm install
+```
+
+3. Inicia el servidor local:
+```bash
+npx live-server --port=5500
+```
 
 ---
 
-## 🗂️ Estructura del Proyecto
+## 🔍 SEO & Accesibilidad
+
+### Optimización SEO
+- 🏷️ Meta tags personalizados (Open Graph, Twitter Cards)
+- 🖼️ Lazy loading en imágenes
+- 📝 Schema Markup para productos
+- 🚀 Performance 90+ en Lighthouse
+- 📈 Sitemap.xml generado automáticamente
+
+### Accesibilidad
+- ♿ Navegación por teclado
+- 🎨 Contraste AA/AAA cumplido
+- 🔊 Screen reader friendly
+- 🏷️ Etiquetas ARIA en elementos interactivos
+- 🌐 Idioma definido + dirección de texto
+
+---
+
+## 🌐 Demo en Vivo
+
+▶️ **Visita la tienda:** [gamezone-store.com](https://gian9519.github.io/gamezone-store)  
+📂 **Código fuente:** [Repositorio GitHub](https://github.com/Gian9519/gamezone-store)
+
+---
+
+## 🕹️ Estructura del Proyecto
 
 ```
 gamezone-store/
-├── index.html
-├── css/
-│   └── styles.css
-├── js/
-│   └── main.js
-├── img/
-│   ├── logo.png
-│   ├── gaming-banner.jpg
-│   └── productos/
-└── README.md
+
 ```
 
 ---
 
-## 🌐 Hosting
+## 🤝 Contribuciones
 
-Puedes ver el sitio en línea en:
-
-👉 **GitHub Pages**: [gamezone-store en vivo](https://github.com/Gian9519/gamezone-store)
+¡Aportes bienvenidos! Sigue estos pasos:
+1. Haz fork del proyecto
+2. Crea tu feature branch (`git checkout -b feature/awesome-feature`)
+3. Commit your changes (`git commit -m 'Add some awesome feature'`)
+4. Push al branch (`git push origin feature/awesome-feature`)
+5. Abre un Pull Request
 
 ---
 
-## 👨‍💻 Autor
+## 📄 Licencia
 
-**Gianluca Pippolo**
-Proyecto de Frontend | 2025
+Distribuido bajo MIT License. Ver `LICENSE` para más información.
+
+---
+
+**Hecho con ❤️ y 🕹️ por [Gianluca Pippolo](https://github.com/Gian9519) | 🚀 ¡Game On!**
+```
