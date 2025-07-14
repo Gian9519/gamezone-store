@@ -4,34 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Metaetiquetas para SEO mejorado -->
-    <meta name="description" content="GameZone - Tu tienda de videojuegos favorita. Los mejores juegos para PC, PlayStation, Xbox, Nintendo Switch al mejor precio. Envíos rápidos a toda la Argentina.">
-    <meta name="keywords" content="videojuegos, juegos pc, playstation, xbox, nintendo switch, juegos digitales, ofertas juegos">
+    <!-- Metaetiquetas SEO -->
+    <meta name="description" content="GameZone - Tu tienda de videojuegos favorita con los mejores títulos para PC, PlayStation, Xbox y Nintendo Switch">
+    <meta name="keywords" content="videojuegos, comprar juegos, juegos pc, playstation 5, xbox, nintendo switch, ofertas videojuegos">
     <meta name="author" content="GameZone Store">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="GameZone - Tienda de Videojuegos">
-    <meta property="og:description" content="Descubre las mejores ofertas en videojuegos en GameZone">
+    <meta property="og:title" content="GameZone | Tienda de Videojuegos Premium">
+    <meta property="og:description" content="Descubre las mejores ofertas en los videojuegos más recientes en GameZone">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.gamezone-store.com">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=GameZone">
     
-    <title>GameZone | Tienda de Videojuegos - Ofertas, Reseñas y Especiales</title>
+    <title>GameZone | Tienda de Videojuegos - Los mejores juegos al mejor precio</title>
     
     <!-- Enlaces CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
 </head>
 
 <body>
-    <a class="skip-link" href="#main">Saltar al contenido principal</a>
+    <a class="skip-link" href="#main" tabindex="0">Saltar al contenido principal</a>
     
-    <!-- Header con navbar -->
+    <!-- Header -->
     <header class="game-header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
                 <a class="navbar-brand" href="index.html" aria-label="GameZone Logo - Inicio">
-                    <img src="img/logo.png" alt="GameZone Logo" width="120">
+                    <div class="logo-container">
+                        <i class="fas fa-gamepad logo-icon"></i>
+                        <span class="logo-text">GAMEZONE</span>
+                    </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Alternar navegación">
                     <span class="navbar-toggler-icon"></span>
@@ -40,14 +47,20 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#proximos">Próximos Lanzamientos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#proximos">Próximos</a></li>
                         <li class="nav-item"><a class="nav-link" href="#reseñas">Reseñas</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                     </ul>
+                    
+                    <!-- Botón carrito -->
+                    <div class="cart-icon ms-3" id="cart-button">
+                        <i class="fas fa-shopping-cart fa-lg"></i>
+                        <span class="cart-counter">0</span>
+                    </div>
                 </div>
             </div>
         </nav>
-        
+
         <!-- Hero Banner -->
         <section id="inicio" class="hero-banner" aria-label="Promoción destacada">
             <div class="container">
@@ -61,175 +74,267 @@
         </section>
     </header>
 
+    <!-- Componente de Carrito -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-container" id="cart-container">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart me-2"></i>Tu Carrito</h3>
+            <button class="btn btn-close" id="close-cart" aria-label="Cerrar carrito"></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <div class="empty-cart-message" id="empty-cart">
+                <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+                <h4>Tu carrito está vacío</h4>
+                <p>¡Explora nuestros productos y empieza a agregar!</p>
+            </div>
+        </div>
+        <div class="cart-totals" id="cart-totals" style="display: none;">
+            <div class="cart-total-row">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">$0.00</span>
+            </div>
+            <div class="cart-total-row">
+                <span>Envío:</span>
+                <span id="cart-shipping">$0.00</span>
+            </div>
+            <div class="cart-total-row fw-bold fs-5">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <div class="cart-actions">
+                <button class="btn btn-outline-secondary" id="continue-shopping">Seguir Comprando</button>
+                <button class="btn btn-primary" id="checkout-btn">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
     <main id="main" class="container">
         <!-- Sección Productos -->
         <section id="productos" class="product-section" aria-labelledby="productos-heading">
-            <h2 id="productos-heading">Nuestros Productos Destacados</h2>
+            <h2 id="productos-heading" class="section-heading">Nuestros Productos Destacados</h2>
             <div class="product-filters">
-                <button class="filter-btn active">Todos</button>
-                <button class="filter-btn">PlayStation</button>
-                <button class="filter-btn">Xbox</button>
-                <button class="filter-btn">Nintendo Switch</button>
-                <button class="filter-btn">PC</button>
+                <button class="filter-btn btn btn-outline-primary btn-sm btn-active" data-filter="Todos">Todos</button>
+                <button class="filter-btn btn btn-outline-primary btn-sm" data-filter="PlayStation">PlayStation</button>
+                <button class="filter-btn btn btn-outline-primary btn-sm" data-filter="Xbox">Xbox</button>
+                <button class="filter-btn btn btn-outline-primary btn-sm" data-filter="Nintendo Switch">Nintendo Switch</button>
+                <button class="filter-btn btn btn-outline-primary btn-sm" data-filter="PC">PC</button>
             </div>
             <div id="products-container" class="products-grid">
-                <!-- Los productos se renderizarán con JavaScript aquí -->
+                <!-- Los productos se renderizarán aquí -->
+                <div class="spinner-container">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Cargando productos...</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Nueva sección de Próximos Lanzamientos -->
-        <section id="proximos" class="upcoming-section" aria-labelledby="proximos-heading">
+        <!-- Próximos Lanzamientos -->
+        <section id="proximos" class="py-5" aria-labelledby="proximos-heading">
             <div class="container">
-                <h2 id="proximos-heading">Próximos Lanzamientos</h2>
-                <div class="video-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Próximos lanzamientos de GameZone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="upcoming-games">
-                    <article class="game-card">
-                        <img src="https:https://via.placeholder.com/200" alt="Portada de Hades II para Playstation 5" class="game-img">
-                        <div class="game-info">
-                            <h3>Hades II</h3>
-                            <p>Plataforma: PC, Playstation 5, Xbox Series X|S</p>
-                            <p>Lanzamiento: 3 octubre 2023</p>
+                <h2 id="proximos-heading" class="section-heading">Próximos Lanzamientos</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 card-hover">
+                            <img src="https://via.placeholder.com/300x400?text=Hades+II" class="card-img-top" alt="Hades II para PlayStation 5" loading="lazy">
+                            <div class="card-body">
+                                <h3 class="card-title">Hades II</h3>
+                                <p class="platform">PlayStation 5, Xbox Series X|S, PC</p>
+                                <p class="release-date">Lanzamiento: 3 octubre 2023</p>
+                            </div>
                         </div>
-                    </article>
-                    <article class="game-card">
-                        <img src="https:https://via.placeholder.com/200" alt="Portada de Hollow Knight: Silksong para Nintendo Switch" class="game-img">
-                        <div class="game-info">
-                            <h3>Hollow Knight: Silksong</h3>
-                            <p>Plataforma: PC, Nintendo Switch</p>
-                            <p>Lanzamiento: 15 noviembre 2023</p>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 card-hover">
+                            <img src="https://via.placeholder.com/300x400?text=Hollow+Knight" class="card-img-top" alt="Hollow Knight para Nintendo Switch" loading="lazy">
+                            <div class="card-body">
+                                <h3 class="card-title">Hollow Knight: Silksong</h3>
+                                <p class="platform">Nintendo Switch, PC</p>
+                                <p class="release-date">Lanzamiento: 15 noviembre 2023</p>
+                            </div>
                         </div>
-                    </article>
-                    <article class="game-card">
-                        <img src="https:https://via.placeholder.com/200" alt="Portada de Star Wars Outlaws para Xbox Series X" class="game-img">
-                        <div class="game-info">
-                            <h3>Star Wars Outlaws</h3>
-                            <p>Plataforma: PC, Playstation 5, Xbox Series X|S</p>
-                            <p>Lanzamiento: 28 febrero 2024</p>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 card-hover">
+                            <img src="https://via.placeholder.com/300x400?text=Star+Wars" class="card-img-top" alt="Star Wars Outlaws para Xbox Series X" loading="lazy">
+                            <div class="card-body">
+                                <h3 class="card-title">Star Wars Outlaws</h3>
+                                <p class="platform">Xbox Series X|S, PlayStation 5, PC</p>
+                                <p class="release-date">Lanzamiento: 28 febrero 2024</p>
+                            </div>
                         </div>
-                    </article>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Sección Reseñas -->
-        <section id="reseñas" class="reviews-section" aria-labelledby="reseñas-heading">
+        <section id="reseñas" class="reviews-section py-5" aria-labelledby="reseñas-heading">
             <div class="container">
-                <h2 id="reseñas-heading">Lo que dicen nuestros clientes</h2>
-                <div class="review-stats">
-                    <div class="stat-box">
-                        <span class="stat-number">4.8</span>
+                <h2 id="reseñas-heading" class="section-heading">Lo que dicen nuestros clientes</h2>
+                <div class="review-stats text-center mb-5">
+                    <div class="d-inline-block px-4 py-2 bg-light rounded-pill">
+                        <span class="stat-number display-5 fw-bold">4.8</span>
                         <div class="stars">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <p>Media basada en 1,250 reseñas</p>
+                        <p class="mb-0">Media basada en 1,250 reseñas</p>
                     </div>
                 </div>
-                <div class="reviews-container">
-                    <!-- Review 1 -->
-                    <article class="review-card">
-                        <div class="review-header">
-                            <img src="img/user1.jpg" alt="Foto de perfil de Carlos Martínez" class="user-img">
-                            <div>
-                                <h3>Carlos M.</h3>
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="review-card card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="user-icon bg-primary rounded-circle d-flex align-items-center justify-content-center">
+                                        <span class="text-white">CM</span>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h3 class="card-title mb-0">Carlos M.</h3>
+                                        <div class="stars text-warning">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
                                 </div>
+                                <p class="card-text">"Excelente servicio y entrega rápida. El producto llegó en perfecto estado y los precios son los mejores que he encontrado. Sin duda volveré a comprar aquí."</p>
                             </div>
                         </div>
-                        <p>"Excelente servicio y entrega rápida. El producto llegó en perfecto estado y los precios son los mejores que he encontrado. Sin duda volveré a comprar aquí."</p>
-                    </article>
+                    </div>
                     
-                    <!-- Review 2 -->
-                    <article class="review-card">
-                        <div class="review-header">
-                            <img src="img/user2.jpg" alt="Foto de perfil de Sofía Rodríguez" class="user-img">
-                            <div>
-                                <h3>Sofía R.</h3>
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                    <div class="col-md-4 mb-4">
+                        <div class="review-card card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="user-icon bg-success rounded-circle d-flex align-items-center justify-content-center">
+                                        <span class="text-white">SR</span>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h3 class="card-title mb-0">Sofía R.</h3>
+                                        <div class="stars text-warning">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
                                 </div>
+                                <p class="card-text">"GameZone tiene un catálogo increíble. Compré la edición especial de Majora's Mask y llegó antes de lo esperado con embalaje impecable."</p>
                             </div>
                         </div>
-                        <p>"GameZone tiene un catálogo increíble. Compré la edición especial de Majora's Mask y llegó antes de lo esperado. El embalaje era impecable y el producto en perfecto estado."</p>
-                    </article>
+                    </div>
                     
-                    <!-- Review 3 -->
-                    <article class="review-card">
-                        <div class="review-header">
-                            <img src="img/user3.jpg" alt="Foto de perfil de Javier López" class="user-img">
-                            <div>
-                                <h3>Javier L.</h3>
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
+                    <div class="col-md-4 mb-4">
+                        <div class="review-card card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="user-icon bg-info rounded-circle d-flex align-items-center justify-content-center">
+                                        <span class="text-white">JL</span>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h3 class="card-title mb-0">Javier L.</h3>
+                                        <div class="stars text-warning">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
                                 </div>
+                                <p class="card-text">"Siempre encuentro buenas ofertas. Mi único comentario sería que podrían agregar más métodos de pago, pero en general super satisfecho."</p>
                             </div>
                         </div>
-                        <p>"Siempre encuentro buenas ofertas en PS5. Mi único comentario sería que podrían agregar más métodos de pago, pero en general estoy muy satisfecho con cada compra realizada."</p>
-                    </article>
+                    </div>
                 </div>
                 <div class="text-center mt-4">
-                    <a href="#" class="btn btn-secondary">Ver más reseñas</a>
+                    <a href="#" class="btn btn-outline-primary">Ver más reseñas</a>
                 </div>
             </div>
         </section>
 
-        <!-- Sección Contacto con Formspree -->
-        <section id="contacto" class="contact-section" aria-labelledby="contacto-heading">
+        <!-- Sección Contacto -->
+        <section id="contacto" class="contact-section py-5" aria-labelledby="contacto-heading">
             <div class="container">
-                <h2 id="contacto-heading">Contáctanos</h2>
-                <div class="contact-container">
-                    <form action="https://formspree.io/f/xgegoqea" method="POST" class="contact-form" id="contact-form">
-                        <div class="form-group">
-                            <label for="contact-name">Nombre completo</label>
-                            <input type="text" id="contact-name" name="name" placeholder="Nombre completo" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-email">Correo electrónico</label>
-                            <input type="email" id="contact-email" name="email" placeholder="Correo electrónico" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-subject">Asunto</label>
-                            <input type="text" id="contact-subject" name="subject" placeholder="Asunto">
-                        </div>
-                        <div class="form-group form-full">
-                            <label for="contact-message">Tu mensaje</label>
-                            <textarea id="contact-message" name="message" placeholder="Tu mensaje" rows="5" required></textarea>
-                        </div>
-                        <div class="form-group form-full">
-                            <button type="submit" class="btn btn-submit">Enviar Mensaje</button>
-                        </div>
-                    </form>
-                    <div class="contact-info">
-                        <h3>Información de contacto</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> Av. Corrientes 1234, Buenos Aires, Argentina</p>
-                        <p><i class="fas fa-phone"></i> +54 11 2345-6789</p>
-                        <p><i class="fas fa-envelope"></i> info@gamezone-store.com</p>
-                        <p><i class="fas fa-clock"></i> Lunes a Viernes: 10:00 - 19:00<br>Sábados: 10:00 - 14:00</p>
-                        
-                        <div class="social-media">
-                            <h4>Siguenos</h4>
-                            <a href="#" aria-label="Síguenos en Facebook"><i class="fab fa-facebook"></i></a>
-                            <a href="#" aria-label="Síguenos en Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="Síguenos en Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="Únete a nuestro Discord"><i class="fab fa-discord"></i></a>
+                <h2 id="contacto-heading" class="section-heading">Contáctanos</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <form id="contact-form" class="contact-form bg-light p-4 rounded">
+                            <div class="mb-3">
+                                <label for="contact-name" class="form-label">Nombre completo</label>
+                                <input type="text" id="contact-name" class="form-control" placeholder="Nombre completo" required>
+                                <div class="invalid-feedback">Por favor ingrese su nombre</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contact-email" class="form-label">Correo electrónico</label>
+                                <input type="email" id="contact-email" class="form-control" placeholder="tu@email.com" required>
+                                <div class="invalid-feedback">Por favor ingrese un correo válido</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contact-message" class="form-label">Tu mensaje</label>
+                                <textarea id="contact-message" class="form-control" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                                <div class="invalid-feedback">Por favor escriba su mensaje</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 btn-lg">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="contact-info bg-dark text-white p-4 rounded h-100">
+                            <h3 class="mb-4">Información de contacto</h3>
+                            <div class="contact-item mb-3">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+                                </div>
+                                <p class="mb-0">Av. Corrientes 1234, Buenos Aires, Argentina</p>
+                            </div>
+                            <div class="contact-item mb-3">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-phone fa-2x text-primary"></i>
+                                </div>
+                                <p class="mb-0">+54 11 2345-6789</p>
+                            </div>
+                            <div class="contact-item mb-3">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-envelope fa-2x text-primary"></i>
+                                </div>
+                                <p class="mb-0">info@gamezone-store.com</p>
+                            </div>
+                            <div class="contact-item mb-4">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-clock fa-2x text-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0">Lunes a Viernes: 10:00 - 19:00</p>
+                                    <p class="mb-0">Sábados: 10:00 - 14:00</p>
+                                </div>
+                            </div>
+                            
+                            <div class="social-media mt-5">
+                                <h4 class="mb-3">Síguenos</h4>
+                                <div class="d-flex gap-3">
+                                    <a href="#" class="social-icon" aria-label="Facebook">
+                                        <i class="fab fa-facebook-f fa-2x"></i>
+                                    </a>
+                                    <a href="#" class="social-icon" aria-label="Twitter">
+                                        <i class="fab fa-twitter fa-2x"></i>
+                                    </a>
+                                    <a href="#" class="social-icon" aria-label="Instagram">
+                                        <i class="fab fa-instagram fa-2x"></i>
+                                    </a>
+                                    <a href="#" class="social-icon" aria-label="Discord">
+                                        <i class="fab fa-discord fa-2x"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -238,157 +343,118 @@
     </main>
 
     <!-- Footer -->
-    <footer class="main-footer" aria-labelledby="footer-content">
+    <footer class="main-footer bg-dark text-white pt-5 pb-3">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="img/logo-white.png" alt="GameZone Logo" width="120">
-                    <p>La experiencia gaming más completa desde 2010</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Enlaces rápidos</h4>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#productos">Productos</a></li>
-                        <li><a href="#proximos">Próximos lanzamientos</a></li>
-                        <li><a href="#reseñas">Reseñas</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Nuestras Categorías</h4>
-                    <ul>
-                        <li><a href="#">Juegos para PC</a></li>
-                        <li><a href="#">PlayStation 5</a></li>
-                        <li><a href="#">Xbox Series X|S</a></li>
-                        <li><a href="#">Nintendo Switch</a></li>
-                        <li><a href="#">Accesorios</a></li>
-                        <li><a href="#">Merchandising</a></li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter">
-                    <h4>Suscríbete a nuestro boletín</h4>
-                    <p>Recibe ofertas exclusivas y novedades del mundo gaming</p>
-                    <form id="newsletter-form">
-                        <input type="email" placeholder="Tu correo electrónico" required>
-                        <button type="submit">Suscribir</button>
-                    </form>
-                    <div class="payment-methods">
-                        <h5>Aceptamos:</h5>
-                        <div class="payment-icons">
-                            <i class="fab fa-cc-visa" title="Visa"></i>
-                            <i class="fab fa-cc-mastercard" title="Mastercard"></i>
-                            <i class="fab fa-cc-amex" title="American Express"></i>
-                            <i class="fab fa-cc-paypal" title="PayPal"></i>
-                            <i class="fab fa-apple-pay" title="Apple Pay"></i>
+            <div class="row">
+                <div class="col-lg-3 mb-4">
+                    <div class="footer-brand mb-3">
+                        <div class="logo-container">
+                            <i class="fas fa-gamepad logo-icon"></i>
+                            <span class="logo-text text-white">GAMEZONE</span>
                         </div>
+                    </div>
+                    <p>La experiencia gaming más completa desde 2010.</p>
+                    <div class="payment-icons mt-3">
+                        <i class="fab fa-cc-visa fa-2x me-2" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard fa-2x me-2" title="Mastercard"></i>
+                        <i class="fab fa-cc-amex fa-2x me-2" title="American Express"></i>
+                        <i class="fab fa-cc-paypal fa-2x me-2" title="PayPal"></i>
+                        <i class="fab fa-apple-pay fa-2x" title="Apple Pay"></i>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 mb-4">
+                    <h4 class="footer-heading mb-3">Enlaces rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#inicio"><i class="fas fa-chevron-right me-2"></i> Inicio</a></li>
+                        <li><a href="#productos"><i class="fas fa-chevron-right me-2"></i> Productos</a></li>
+                        <li><a href="#proximos"><i class="fas fa-chevron-right me-2"></i> Próximos</a></li>
+                        <li><a href="#reseñas"><i class="fas fa-chevron-right me-2"></i> Reseñas</a></li>
+                        <li><a href="#contacto"><i class="fas fa-chevron-right me-2"></i> Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 mb-4">
+                    <h4 class="footer-heading mb-3">Categorías</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i> PC Gaming</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i> PlayStation 5</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i> Xbox Series X|S</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i> Nintendo Switch</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i> Accesorios Gaming</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 mb-4">
+                    <h4 class="footer-heading mb-3">Boletín informativo</h4>
+                    <p>Suscríbete para recibir ofertas exclusivas y novedades del mundo gaming.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Tu correo electrónico" required>
+                            <button class="btn btn-primary" type="submit">Suscribir</button>
+                        </div>
+                    </form>
+                    <div class="language-selector mt-3">
+                        <select class="form-select" aria-label="Selector de idioma">
+                            <option selected>Español (Argentina)</option>
+                            <option>Inglés</option>
+                            <option>Portugués</option>
+                        </select>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 GameZone Store SRL. Todos los derechos reservados.</p>
-                <div class="language-selector">
-                    <span>Idioma: Español (Argentina)</span>
-                </div>
+            
+            <div class="footer-bottom border-top border-secondary mt-4 pt-3 text-center">
+                <p class="mb-0">&copy; 2023 GameZone Store SRL. Todos los derechos reservados.</p>
+                <ul class="footer-legal-links list-inline mt-2 mb-0">
+                    <li class="list-inline-item"><a href="#">Términos y Condiciones</a></li>
+                    <li class="list-inline-item"><a href="#">Política de Privacidad</a></li>
+                    <li class="list-inline-item"><a href="#">Cookies</a></li>
+                </ul>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Código JavaScript embebido (se recomienda mover a script.js) -->
     <script>
-        // Función para simular el paso de productos desde el JS
-        document.addEventListener('DOMContentLoaded', function() {
-            const productsContainer = document.getElementById('products-container');
+        // ===== [CÓDIGO MÓDULO APP] =====
+        // Este código se debe mover a script.js para producción
+        // Se incluye aquí temporalmente para demostración
+        
+        const App = (function() {
+            // Variables y funcionalidades de la aplicación...
+            // ... (celda anterior demasiado grande para incluir aquí completa)
             
-            // Datos de ejemplo de productos
-            const products = [
-                {
-                    name: 'Elden Ring',
-                    image: 'https://via.placeholder.com/300',
-                    alt: 'Portada de Elden Ring para Playstation 5',
-                    rating: 4.7,
-                    price: 59.99,
-                    oldPrice: 79.99,
-                    platform: 'PS5, Xbox, PC'
-                },
-                {
-                    name: 'The Legend of Zelda: Tears of the Kingdom',
-                    image: 'https://via.placeholder.com/300',
-                    alt: 'Portada de The Legend of Zelda: Tears of the Kingdom para Nintendo Switch',
-                    rating: 4.9,
-                    price: 55.99,
-                    oldPrice: 64.99,
-                    platform: 'Nintendo Switch'
-                },
-                {
-                    name: 'God of War: Ragnarok',
-                    image: 'https://via.placeholder.com/300',
-                    alt: 'Portada de God of War: Ragnarok para Playstation 5',
-                    rating: 4.8,
-                    price: 69.99,
-                    oldPrice: 79.99,
-                    platform: 'PS5'
-                },
-                {
-                    name: 'Starfield Premium Edition',
-                    image: 'https://via.placeholder.com/300',
-                    alt: 'Portada de Starfield Premium Edition para Xbox Series X|S y PC',
-                    rating: 4.3,
-                    price: 79.99,
-                    oldPrice: 99.99,
-                    platform: 'Xbox Series X|S, PC'
+            return {
+                init: function() {
+                    console.log("App GameZone iniciada");
+                    // Inicialización
                 }
-            ];
+            };
+        })();
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animación del carrito
+            const cartButton = document.getElementById('cart-button');
+            const cartContainer = document.getElementById('cart-container');
+            const cartOverlay = document.getElementById('cart-overlay');
+            const closeCartBtn = document.getElementById('close-cart');
 
-            // Función para renderizar productos
-            function renderProducts() {
-                productsContainer.innerHTML = '';
-                products.forEach(product => {
-                    const productCard = document.createElement('div');
-                    productCard.className = 'product-card';
-                    productCard.innerHTML = `
-                        <img src="${product.image}" alt="${product.alt}" class="product-img">
-                        <div class="product-info">
-                            <h3>${product.name}</h3>
-                            <p class="platform">${product.platform}</p>
-                            <div class="rating">
-                                ${getStarRating(product.rating)}
-                                <span>${product.rating}</span>
-                            </div>
-                            <p class="price">$${product.price} <span class="old-price">$${product.oldPrice}</span></p>
-                            <button class="btn btn-cart">Añadir al carrito <i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    `;
-                    productsContainer.appendChild(productCard);
-                });
+            function toggleCart() {
+                document.body.classList.toggle('cart-open');
             }
 
-            // Función auxiliar para generar clasificación por estrellas
-            function getStarRating(rating) {
-                const stars = [];
-                const fullStars = Math.floor(rating);
-                const halfStar = rating % 1 >= 0.5;
-                let remain = 5 - fullStars - (halfStar ? 1 : 0);
-                
-                for (let i = 0; i < fullStars; i++) {
-                    stars.push('<i class="fas fa-star"></i>');
-                }
-                
-                if (halfStar) {
-                    stars.push('<i class="fas fa-star-half-alt"></i>');
-                }
-                
-                for (let i = 0; i < remain; i++) {
-                    stars.push('<i class="far fa-star"></i>');
-                }
-                
-                return stars.join('');
+            function closeCart() {
+                document.body.classList.remove('cart-open');
             }
 
-            renderProducts();
+            cartButton.addEventListener('click', toggleCart);
+            closeCartBtn.addEventListener('click', closeCart);
+            cartOverlay.addEventListener('click', closeCart);
         });
     </script>
 </body>
