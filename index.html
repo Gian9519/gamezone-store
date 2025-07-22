@@ -3,49 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Metaetiquetas SEO -->
-    <meta name="description" content="GameZone - Tu tienda de videojuegos favorita con los mejores títulos para PC, PlayStation, Xbox y Nintendo Switch">
-    <meta name="keywords" content="videojuegos, comprar juegos, juegos pc, playstation 5, xbox, nintendo switch, ofertas videojuegos">
+    <meta name="description" content="GameZone - Tu tienda de videojuegos favorita con los mejores títulos">
+    <meta name="keywords" content="videojuegos, comprar juegos, playstation, xbox, nintendo switch, pc">
     <meta name="author" content="GameZone Store">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="GameZone | Tienda de Videojuegos Premium">
-    <meta property="og:description" content="Descubre las mejores ofertas en los videojuegos más recientes en GameZone">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.gamezone-store.com">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=GameZone">
     
-    <title>GameZone | Tienda de Videojuegos - Los mejores juegos al mejor precio</title>
+    <title>GameZone | Tienda de Videojuegos Premium</title>
     
-    <!-- Enlaces CSS -->
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap y Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
-</head>
 
+    <style>
+        :root {
+            --primary-color: #ff5e00;
+            --primary-light: #ff8833;
+            --primary-dark: #cc4d00;
+            --secondary-color: #2d2d2d;
+            --secondary-light: #444;
+            --accent-color: #0077ff;
+            --accent-light: #3395ff;
+            --light-color: #f8f8f8;
+            --dark-color: #1a1a1a;
+            --gray-light: #e9ecef;
+            --gray-mid: #ced4da;
+            --gray-dark: #6c757d;
+            --font-main: 'Roboto', sans-serif;
+            --font-title: 'Press Start 2P', cursive;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --box-shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--dark-color);
+            background-color: #ffffff;
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-title);
+            letter-spacing: 0.5px;
+        }
+        
+        .game-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85));
+            color: white;
+            position: relative;
+        }
+        
+        .hero-banner {
+            text-align: center;
+            padding: 80px 0;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            isolation: isolate;
+        }
+        
+        .hero-banner::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            z-index: -1;
+            opacity: 0.8;
+        }
+        
+        .hero-banner h1 {
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn-outline-light {
+            border-width: 2px;
+            font-weight: 6e00;
+            transition: var(--transition);
+        }
+        
+        .btn-outline-light:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .section-heading {
+            color: var(--secondary-color);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-heading::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin-top: 15px;
+            border-radius: 2px;
+        }
+        
+        .product-card {
+            border: none;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 100%;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            background: white;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: transparent;
+        }
+        
+        .product-card .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .card-title {
+            color: var(--secondary-color);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .platform {
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .cart-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        .cart-counter {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .product-section {
+            background-color: var(--light-color);
+            padding: 80px 0;
+        }
+        
+        .cart-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.7);
+          z-index: 1000;
+          opacity: 0;
+          visibility: hidden;
+          transition: var(--transition);
+        }
+        
+        .cart-open .cart-overlay {
+          opacity: 1;
+          visibility: visible;
+        }
+        
+        .cart-container {
+          position: fixed;
+          top: 0;
+          right: -420px;
+          width: 380px;
+          height: 100%;
+          background-color: white;
+          box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+          transition: right 0.4s ease;
+          z-index: 1010;
+          overflow-y: auto;
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .cart-open .cart-container {
+          right: 0;
+        }
+        
+        .cart-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1.5rem;
+          padding-bottom: 1rem;
+          border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .cart-items {
+          flex-grow: 1;
+          overflow-y: auto;
+          margin-bottom: 1.5rem;
+          padding: 1rem; 
+          min-height: 200px;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .empty-cart-message {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          height: 100%;
+          padding: 2rem;
+          color: var(--gray-dark);
+        }
+        
+        .empty-cart-message i {
+          font-size: 4rem;
+          color: var(--gray-mid);
+          margin-bottom: 1.5rem;
+        }
+
+        /* Secciones añadidas */
+        .review-section {
+            background-color: white;
+            padding: 80px 0;
+        }
+        
+        .contact-section {
+            background-color: var(--light-color);
+            padding: 80px 0;
+        }
+        
+        .review-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .user-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .stars {
+            color: gold;
+        }
+        
+        /* Estilos para el estado de envío del formulario */
+        .sending-message {
+            color: var(--primary-color);
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .alert-message {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .spinner-border {
+            display: none;
+            width: 3rem; 
+            height: 3rem;
+        }
+        
+        #api-loading {
+            text-align: center;
+            padding: 2rem 0;
+        }
+    </style>
+</head>
 <body>
-    <a class="skip-link" href="#main" tabindex="0">Saltar al contenido principal</a>
-    
+    <!-- Componente de Carrito -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-container" id="cart-container">
+      <div class="cart-header">
+        <h3><i class="fas fa-shopping-cart me-2"></i>Tu Carrito</h3>
+        <button class="btn btn-close" id="close-cart" aria-label="Cerrar carrito"></button>
+      </div>
+      
+      <!-- Contenedor para el carrito -->
+      <div class="cart-items" id="cart-items">
+        <!-- Estado vacío -->
+        <div class="empty-cart-message" id="empty-cart">
+          <i class="fas fa-shopping-cart"></i>
+          <h4>Tu carrito está vacío</h4>
+          <p>¡Explora nuestros productos y empieza a agregar!</p>
+          <button class="btn btn-primary btn-lg mt-3" id="empty-cart-btn">Ir a Tienda</button>
+        </div>
+      </div>
+      
+      <!-- Totales del carrito -->
+      <div class="cart-totals" id="cart-totals" style="display: none;">
+        <div class="cart-total-row">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <div class="cart-total-row">
+          <span>Envío:</span>
+          <span id="cart-shipping">$0.00</span>
+        </div>
+        <div class="cart-total-row total-total">
+          <span>Total:</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+      </div>
+      
+      <!-- Acciones del carrito -->
+      <div class="cart-actions">
+        <button class="btn btn-outline-secondary" id="continue-shopping">Seguir Comprando</button>
+        <button class="btn btn-primary" id="checkout-btn">Finalizar Compra</button>
+      </div>
+    </div>
+
     <!-- Header -->
     <header class="game-header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="index.html" aria-label="GameZone Logo - Inicio">
-                    <div class="logo-container">
-                        <i class="fas fa-gamepad logo-icon"></i>
-                        <span class="logo-text">GAMEZONE</span>
-                    </div>
+                <a class="navbar-brand" href="#" aria-label="GameZone Logo">
+                    <span class="logo-text text-white" style="font-family: var(--font-title); text-transform: uppercase; letter-spacing: 1.5px;">GAMEZONE</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Alternar navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
                         <li class="nav-item"><a class="nav-link" href="#proximos">Próximos</a></li>
                         <li class="nav-item"><a class="nav-link" href="#reseñas">Reseñas</a></li>
@@ -54,7 +417,7 @@
                     
                     <!-- Botón carrito -->
                     <div class="cart-icon ms-3" id="cart-button">
-                        <i class="fas fa-shopping-cart fa-lg"></i>
+                        <i class="fas fa-shopping-cart fa-lg text-white"></i>
                         <span class="cart-counter">0</span>
                     </div>
                 </div>
@@ -62,399 +425,648 @@
         </nav>
 
         <!-- Hero Banner -->
-        <section id="inicio" class="hero-banner" aria-label="Promoción destacada">
+        <section class="hero-banner" aria-label="Promoción destacada">
             <div class="container">
-                <h1>Bienvenido a GameZone</h1>
-                <p>Los mejores juegos al mejor precio, con envío en 24h</p>
+                <h1 class="display-4 fw-bold">Bienvenido a GameZone</h1>
+                <p class="lead mb-4">Los mejores juegos a precios increíbles</p>
                 <div class="hero-buttons">
-                    <a href="#productos" class="btn btn-primary">Ver Catálogo</a>
-                    <a href="#proximos" class="btn btn-outline-light">Próximos Lanzamientos</a>
+                    <a href="#productos" class="btn btn-primary btn-lg px-4">Ver Catálogo</a>
+                    <a href="#proximos" class="btn btn-outline-light btn-lg px-4 ms-2">Próximos Lanzamientos</a>
                 </div>
             </div>
         </section>
     </header>
 
-    <!-- Componente de Carrito -->
-    <div class="cart-overlay" id="cart-overlay"></div>
-    <div class="cart-container" id="cart-container">
-        <div class="cart-header">
-            <h3><i class="fas fa-shopping-cart me-2"></i>Tu Carrito</h3>
-            <button class="btn btn-close" id="close-cart" aria-label="Cerrar carrito"></button>
-        </div>
-        <div class="cart-items" id="cart-items">
-            <div class="empty-cart-message" id="empty-cart">
-                <i class="fas fa-shopping-cart fa-3x mb-3"></i>
-                <h4>Tu carrito está vacío</h4>
-                <p>¡Explora nuestros productos y empieza a agregar!</p>
-            </div>
-        </div>
-        <div class="cart-totals" id="cart-totals" style="display: none;">
-            <div class="cart-total-row">
-                <span>Subtotal:</span>
-                <span id="cart-subtotal">$0.00</span>
-            </div>
-            <div class="cart-total-row">
-                <span>Envío:</span>
-                <span id="cart-shipping">$0.00</span>
-            </div>
-            <div class="cart-total-row fw-bold fs-5">
-                <span>Total:</span>
-                <span id="cart-total">$0.00</span>
-            </div>
-            <div class="cart-actions">
-                <button class="btn btn-outline-secondary" id="continue-shopping">Seguir Comprando</button>
-                <button class="btn btn-primary" id="checkout-btn">Finalizar Compra</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contenido principal -->
-    <main id="main" class="container">
-        <!-- Sección Productos -->
-        <section id="productos" class="product-section" aria-labelledby="productos-heading">
-            <h2 id="productos-heading" class="section-heading">Nuestros Productos Destacados</h2>
-            <div class="product-filters">
-                <button class="filter-btn btn btn-outline-primary btn-sm btn-active" data-filter="Todos">Todos</button>
+    <!-- Sección Productos con API -->
+    <section id="productos" class="product-section py-5">
+        <div class="container">
+            <h2 class="section-heading text-center">Juegos Destacados desde API</h2>
+            <div class="product-filters justify-content-center mb-4">
+                <button class="filter-btn btn btn-outline-primary btn-sm" data-filter="Todos">Todos</button>
                 <button class="filter-btn btn btn-outline-primary btn-sm" data-filter="PlayStation">PlayStation</button>
                 <button class="filter-btn btn btn-outline-primary btn-sm" data-filter="Xbox">Xbox</button>
-                <button class="filter-btn btn btn-outline-primary btn-sm" data-filter="Nintendo Switch">Nintendo Switch</button>
                 <button class="filter-btn btn btn-outline-primary btn-sm" data-filter="PC">PC</button>
             </div>
-            <div id="products-container" class="products-grid">
-                <!-- Los productos se renderizarán aquí -->
-                <div class="spinner-container">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Cargando productos...</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Próximos Lanzamientos -->
-        <section id="proximos" class="py-5" aria-labelledby="proximos-heading">
-            <div class="container">
-                <h2 id="proximos-heading" class="section-heading">Próximos Lanzamientos</h2>
-                <div class="row justify-content-center">
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 card-hover">
-                            <img src="https://via.placeholder.com/300x400?text=Hades+II" class="card-img-top" alt="Hades II para PlayStation 5" loading="lazy">
-                            <div class="card-body">
-                                <h3 class="card-title">Hades II</h3>
-                                <p class="platform">PlayStation 5, Xbox Series X|S, PC</p>
-                                <p class="release-date">Lanzamiento: 3 octubre 2023</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 card-hover">
-                            <img src="https://via.placeholder.com/300x400?text=Hollow+Knight" class="card-img-top" alt="Hollow Knight para Nintendo Switch" loading="lazy">
-                            <div class="card-body">
-                                <h3 class="card-title">Hollow Knight: Silksong</h3>
-                                <p class="platform">Nintendo Switch, PC</p>
-                                <p class="release-date">Lanzamiento: 15 noviembre 2023</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 card-hover">
-                            <img src="https://via.placeholder.com/300x400?text=Star+Wars" class="card-img-top" alt="Star Wars Outlaws para Xbox Series X" loading="lazy">
-                            <div class="card-body">
-                                <h3 class="card-title">Star Wars Outlaws</h3>
-                                <p class="platform">Xbox Series X|S, PlayStation 5, PC</p>
-                                <p class="release-date">Lanzamiento: 28 febrero 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección Reseñas -->
-        <section id="reseñas" class="reviews-section py-5" aria-labelledby="reseñas-heading">
-            <div class="container">
-                <h2 id="reseñas-heading" class="section-heading">Lo que dicen nuestros clientes</h2>
-                <div class="review-stats text-center mb-5">
-                    <div class="d-inline-block px-4 py-2 bg-light rounded-pill">
-                        <span class="stat-number display-5 fw-bold">4.8</span>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <p class="mb-0">Media basada en 1,250 reseñas</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <div class="review-card card h-100">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="user-icon bg-primary rounded-circle d-flex align-items-center justify-content-center">
-                                        <span class="text-white">CM</span>
-                                    </div>
-                                    <div class="ms-3">
-                                        <h3 class="card-title mb-0">Carlos M.</h3>
-                                        <div class="stars text-warning">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="card-text">"Excelente servicio y entrega rápida. El producto llegó en perfecto estado y los precios son los mejores que he encontrado. Sin duda volveré a comprar aquí."</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 mb-4">
-                        <div class="review-card card h-100">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="user-icon bg-success rounded-circle d-flex align-items-center justify-content-center">
-                                        <span class="text-white">SR</span>
-                                    </div>
-                                    <div class="ms-3">
-                                        <h3 class="card-title mb-0">Sofía R.</h3>
-                                        <div class="stars text-warning">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="card-text">"GameZone tiene un catálogo increíble. Compré la edición especial de Majora's Mask y llegó antes de lo esperado con embalaje impecable."</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 mb-4">
-                        <div class="review-card card h-100">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="user-icon bg-info rounded-circle d-flex align-items-center justify-content-center">
-                                        <span class="text-white">JL</span>
-                                    </div>
-                                    <div class="ms-3">
-                                        <h3 class="card-title mb-0">Javier L.</h3>
-                                        <div class="stars text-warning">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="card-text">"Siempre encuentro buenas ofertas. Mi único comentario sería que podrían agregar más métodos de pago, pero en general super satisfecho."</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-4">
-                    <a href="#" class="btn btn-outline-primary">Ver más reseñas</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección Contacto -->
-        <section id="contacto" class="contact-section py-5" aria-labelledby="contacto-heading">
-            <div class="container">
-                <h2 id="contacto-heading" class="section-heading">Contáctanos</h2>
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <form id="contact-form" class="contact-form bg-light p-4 rounded">
-                            <div class="mb-3">
-                                <label for="contact-name" class="form-label">Nombre completo</label>
-                                <input type="text" id="contact-name" class="form-control" placeholder="Nombre completo" required>
-                                <div class="invalid-feedback">Por favor ingrese su nombre</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="contact-email" class="form-label">Correo electrónico</label>
-                                <input type="email" id="contact-email" class="form-control" placeholder="tu@email.com" required>
-                                <div class="invalid-feedback">Por favor ingrese un correo válido</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="contact-message" class="form-label">Tu mensaje</label>
-                                <textarea id="contact-message" class="form-control" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
-                                <div class="invalid-feedback">Por favor escriba su mensaje</div>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 btn-lg">Enviar Mensaje</button>
-                        </form>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="contact-info bg-dark text-white p-4 rounded h-100">
-                            <h3 class="mb-4">Información de contacto</h3>
-                            <div class="contact-item mb-3">
-                                <div class="contact-icon me-3">
-                                    <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
-                                </div>
-                                <p class="mb-0">Av. Corrientes 1234, Buenos Aires, Argentina</p>
-                            </div>
-                            <div class="contact-item mb-3">
-                                <div class="contact-icon me-3">
-                                    <i class="fas fa-phone fa-2x text-primary"></i>
-                                </div>
-                                <p class="mb-0">+54 11 2345-6789</p>
-                            </div>
-                            <div class="contact-item mb-3">
-                                <div class="contact-icon me-3">
-                                    <i class="fas fa-envelope fa-2x text-primary"></i>
-                                </div>
-                                <p class="mb-0">info@gamezone-store.com</p>
-                            </div>
-                            <div class="contact-item mb-4">
-                                <div class="contact-icon me-3">
-                                    <i class="fas fa-clock fa-2x text-primary"></i>
-                                </div>
-                                <div>
-                                    <p class="mb-0">Lunes a Viernes: 10:00 - 19:00</p>
-                                    <p class="mb-0">Sábados: 10:00 - 14:00</p>
-                                </div>
-                            </div>
-                            
-                            <div class="social-media mt-5">
-                                <h4 class="mb-3">Síguenos</h4>
-                                <div class="d-flex gap-3">
-                                    <a href="#" class="social-icon" aria-label="Facebook">
-                                        <i class="fab fa-facebook-f fa-2x"></i>
-                                    </a>
-                                    <a href="#" class="social-icon" aria-label="Twitter">
-                                        <i class="fab fa-twitter fa-2x"></i>
-                                    </a>
-                                    <a href="#" class="social-icon" aria-label="Instagram">
-                                        <i class="fab fa-instagram fa-2x"></i>
-                                    </a>
-                                    <a href="#" class="social-icon" aria-label="Discord">
-                                        <i class="fab fa-discord fa-2x"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="main-footer bg-dark text-white pt-5 pb-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 mb-4">
-                    <div class="footer-brand mb-3">
-                        <div class="logo-container">
-                            <i class="fas fa-gamepad logo-icon"></i>
-                            <span class="logo-text text-white">GAMEZONE</span>
-                        </div>
-                    </div>
-                    <p>La experiencia gaming más completa desde 2010.</p>
-                    <div class="payment-icons mt-3">
-                        <i class="fab fa-cc-visa fa-2x me-2" title="Visa"></i>
-                        <i class="fab fa-cc-mastercard fa-2x me-2" title="Mastercard"></i>
-                        <i class="fab fa-cc-amex fa-2x me-2" title="American Express"></i>
-                        <i class="fab fa-cc-paypal fa-2x me-2" title="PayPal"></i>
-                        <i class="fab fa-apple-pay fa-2x" title="Apple Pay"></i>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 mb-4">
-                    <h4 class="footer-heading mb-3">Enlaces rápidos</h4>
-                    <ul class="footer-links">
-                        <li><a href="#inicio"><i class="fas fa-chevron-right me-2"></i> Inicio</a></li>
-                        <li><a href="#productos"><i class="fas fa-chevron-right me-2"></i> Productos</a></li>
-                        <li><a href="#proximos"><i class="fas fa-chevron-right me-2"></i> Próximos</a></li>
-                        <li><a href="#reseñas"><i class="fas fa-chevron-right me-2"></i> Reseñas</a></li>
-                        <li><a href="#contacto"><i class="fas fa-chevron-right me-2"></i> Contacto</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 mb-4">
-                    <h4 class="footer-heading mb-3">Categorías</h4>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i> PC Gaming</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i> PlayStation 5</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i> Xbox Series X|S</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i> Nintendo Switch</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i> Accesorios Gaming</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 mb-4">
-                    <h4 class="footer-heading mb-3">Boletín informativo</h4>
-                    <p>Suscríbete para recibir ofertas exclusivas y novedades del mundo gaming.</p>
-                    <form class="newsletter-form">
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Tu correo electrónico" required>
-                            <button class="btn btn-primary" type="submit">Suscribir</button>
-                        </div>
-                    </form>
-                    <div class="language-selector mt-3">
-                        <select class="form-select" aria-label="Selector de idioma">
-                            <option selected>Español (Argentina)</option>
-                            <option>Inglés</option>
-                            <option>Portugués</option>
-                        </select>
-                    </div>
-                </div>
+            
+            <!-- Mensaje de carga -->
+            <div id="api-loading" class="d-flex flex-column align-items-center">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="mt-3">Cargando juegos desde <strong>RAWG API</strong>...</p>
             </div>
             
-            <div class="footer-bottom border-top border-secondary mt-4 pt-3 text-center">
-                <p class="mb-0">&copy; 2023 GameZone Store SRL. Todos los derechos reservados.</p>
-                <ul class="footer-legal-links list-inline mt-2 mb-0">
-                    <li class="list-inline-item"><a href="#">Términos y Condiciones</a></li>
-                    <li class="list-inline-item"><a href="#">Política de Privacidad</a></li>
-                    <li class="list-inline-item"><a href="#">Cookies</a></li>
-                </ul>
+            <!-- Container dinámico para los juegos -->
+            <div class="row g-4" id="games-container"></div>
+        </div>
+    </section>
+
+    <!-- Próximos Lanzamientos -->
+    <section id="proximos" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="section-heading text-center">Próximos Lanzamientos</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 product-card">
+                        <img src="https://media.rawg.io/media/games/68d/68dc11abc9ea573a极bdd8c4a0d04229b.jpg" class="card-img-top" alt="Hades II" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="h4">Hades II</h3>
+                            <p class="platform">PlayStation 5, Xbox Series X|S, PC</p>
+                            <p class="release-date">Lanzamiento: 3 octubre 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 product-card">
+                        <img src="https://media.rawg.io/media/games/1e1/1e1e5e3439c0a4cc6853d1fa91f3bc52.jpg" class="card-img-top" alt="Hollow Knight" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="h4">Hollow Knight: Silksong</h3>
+                            <p class="platform">Nintendo Switch, PC</p>
+                            <p class="release-date">Lanzamiento: 15 noviembre 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 product-card">
+                        <img src="https://media.rawg.io/media/games/11b/11b70ed852b72b1c6c9c1ec28db6ab34.jpg" class="card-img-top" alt="Star Wars" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="h4">Star Wars Outlaws</h3>
+                            <p class="platform">Xbox Series X|S, PlayStation 5, PC</p>
+                            <p class="release-date">Lanzamiento: 28 febrero 2024</极
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Reseñas -->
+    <section id="reseñas" class="review-section py-5 bg-light">
+        <div class="container">
+            <h2 class="section-heading text-center">Lo que dicen nuestros clientes</h2>
+            <div class="review-stats text-center mb-5">
+                <div class="d-inline-block px-4 py-2 bg-light rounded-pill">
+                    <span class="stat-number display-5 fw-bold">4.8</span>
+                    <div class="stars mx-auto" style="width: fit-content;">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star-half-alt text-warning"></i>
+                    </div>
+                    <p class="mb-0">Media basada en 1,250 reseñas</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="review-card card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos M." class="rounded-circle me-3" width="60">
+                                <div>
+                                    <h5 class="card-title mb-0">Carlos M.</h5>
+                                    <div class="stars text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-text">"Excelente servicio y entrega rápida. El producto llegó en perfecto estado y los precios son los mejores que he encontrado. Sin duda volveré a comprar aquí."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="review-card card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sofía R." class="rounded-circle me-3" width="60">
+                                <div>
+                                    <h5 class="card-title mb-0">Sofía R.</h5>
+                                    <div class="stars text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-text">"GameZone tiene un catálogo increíble. Compré la edición especial de Majora's Mask y llegó antes de lo esperado con embalaje impecable."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="review-card card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Javier L." class="rounded-circle me-3" width="60">
+                                <div>
+                                    <h5 class="card-title mb-0">Javier L.</h5>
+                                    <div class="stars text-warning">
+                                        <极 class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-text">"Siempre encuentro buenas ofertas. Mi único comentario sería que podrían agregar más métodos de pago, pero en general super satisfecho."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary">Ver más reseñas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="contact-section py-5 bg-white">
+        <div class="container">
+            <h2 class="section-heading text-center">Contáctanos</h2>
+            
+            <!-- Espacio para mensajes -->
+            <div id="form-messages" class="alert-message"></div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <form id="contact-form" action="https://formspree.io/f/mwpodngv" method="POST">
+                        <div class="mb-3">
+                            <label for="contact-name" class="form-label">Nombre completo</label>
+                            <input type="text" 
+                                id="contact-name" 
+                                name="name" 
+                                class="form-control" 
+                                placeholder="Nombre completo" 
+                                required>
+                            <div class="invalid-feedback">Por favor ingrese su nombre</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact-email" class="form-label">Correo electrónico</label>
+                            <input type="email" 
+                                id="contact-email" 
+                                name="email" 
+                                class="form-control" 
+                                placeholder="tu@email.com" 
+                                required>
+                            <div class="invalid-feedback">Por favor ingrese un correo válido</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact-message" class="form-label">Tu mensaje</label>
+                            <textarea id="contact-message" 
+                                name="message" 
+                                class="form-control" 
+                                rows="4" 
+                                placeholder="Escribe tu mensaje aquí..." 
+                                required></textarea>
+                            <div class="invalid-feedback">Por favor escriba su mensaje</div>
+                        </div>
+                        
+                        <!-- Campo oculto para identificación -->
+                        <input type="hidden" name="_language" value="es">
+                        
+                        <!-- Botón de envío con efecto de carga -->
+                        <button type="submit" class="btn btn-primary w-100 btn-lg" id="submit-button">
+                            <span class="submit-btn-text">Enviar Mensaje</span>
+                        </button>
+                        
+                        <!-- Indicador de envío (se mostrará solo durante el envío) -->
+                        <div class="sending-message mt-2" id="sending-message">
+                            <i class="fas fa-spinner fa-spin"></i> Enviando...
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="contact-info bg-dark text-white p-4 rounded h-100">
+                        <h3>Información de contacto</h3>
+                        <div class="contact-item mb-3">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+                            </div>
+                            <p class="mb-0">Av. Corrientes 1234, Buenos Aires, Argentina</p>
+                        </div>
+                        <div class="contact-item mb-3">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-phone fa-2x text-primary"></i>
+                            </div>
+                            <p class="mb-0">+54 11 2345-6789</p>
+                        </div>
+                        <div class="contact-item mb-3">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-envelope fa-2x text-primary"></i>
+                            </div>
+                            <p class="mb-0">info@gamezone-store.com</p>
+                        </div>
+                        <div class="contact-item mb-4">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-clock fa-2x text-primary"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">Lunes a Viernes: 10:00 - 19:00</p>
+                                <p class="mb-0">Sábados: 10:00 - 14:00</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-media mt-5">
+                            <h4 class="mb-3">Síguenos</h4>
+                            <div class="d-flex gap-3">
+                                <a href="#" class="social-icon link-light" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f fa-2x"></i>
+                                </a>
+                                <a href="#" class="social-icon link-light" aria-label="Twitter">
+                                    <i class="fab fa-twitter fa-2x"></i>
+                                </a>
+                                <a href="#" class="social-icon link-light" aria-label="Instagram">
+                                    <i class="fab fa-instagram fa-2x"></i>
+                                </a>
+                                <a href="#" class="social-icon link-light" aria-label="Discord">
+                                    <i class="fab fa-discord fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-warning mb-3">GameZone</h5>
+                    <p>Tu tienda de videojuegos favorita con los mejores precios.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white fs-5"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-warning mb-3">Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light">Inicio</a></li>
+                        <li class="mb-2"><a href="#productos" class="text-light">Productos</a></li>
+                        <li class="mb-2"><a href="#contacto" class="text-light">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-warning mb-3">Suscripción</h5>
+                    <p>Recibe nuestras promociones</p>
+                </div>
+            </div>
+            <hr class="mt-0 bg-secondary">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 GameZone Store. Todos los derechos reservados.</p>
+                <p class="mt-2 small">Juegos provistos por RAWG Video Games Database API</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
     
-    <!-- Código JavaScript embebido (se recomienda mover a script.js) -->
     <script>
-        // ===== [CÓDIGO MÓDULO APP] =====
-        // Este código se debe mover a script.js para producción
-        // Se incluye aquí temporalmente para demostración
-        
-        const App = (function() {
-            // Variables y funcionalidades de la aplicación...
-            // ... (celda anterior demasiado grande para incluir aquí completa)
-            
-            return {
-                init: function() {
-                    console.log("App GameZone iniciada");
-                    // Inicialización
-                }
-            };
-        })();
-        
+        // Sistema de carrito mejorado
         document.addEventListener('DOMContentLoaded', () => {
-            // Animación del carrito
             const cartButton = document.getElementById('cart-button');
-            const cartContainer = document.getElementById('cart-container');
             const cartOverlay = document.getElementById('cart-overlay');
+            const cartContainer = document.getElementById('cart-container');
             const closeCartBtn = document.getElementById('close-cart');
+            const continueShoppingBtn = document.getElementById('continue-shopping');
+            const emptyCartBtn = document.getElementById('empty-cart-btn');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotals = document.getElementById('cart-totals');
+            const emptyCartMessage = document.getElementById('empty-cart');
+            const gamesContainer = document.getElementById('games-container');
+            const apiLoading = document.getElementById('api-loading');
+            const contactForm = document.getElementById('contact-form');
+            const submitButton = document.getElementById('submit-button');
+            const sendingMessage = document.getElementById('sending-message');
+            const formMessages = document.getElementById('form-messages');
+            const submitBtnText = document.querySelector('.submit-btn-text');
 
-            function toggleCart() {
-                document.body.classList.toggle('cart-open');
+            // Funciones para abrir y cerrar carrito
+            function openCart() {
+                document.body.classList.add('cart-open');
             }
 
             function closeCart() {
                 document.body.classList.remove('cart-open');
             }
 
-            cartButton.addEventListener('click', toggleCart);
+            // Event listeners
+            cartButton.addEventListener('click', openCart);
             closeCartBtn.addEventListener('click', closeCart);
             cartOverlay.addEventListener('click', closeCart);
+            continueShoppingBtn.addEventListener('click', closeCart);
+            
+            // Evento botón "Ir a Tienda"
+            emptyCartBtn.addEventListener('click', () => {
+                closeCart();
+                document.querySelector('#productos').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Evento botón "Finalizar Compra"
+            checkoutBtn.addEventListener('click', () => {
+                alert('¡Compra exitosa! Se ha procesado tu pedido.');
+                cartItemsContainer.innerHTML = '';
+                updateCartUI();
+                closeCart();
+            });
+
+            // Actualizar la interfaz del carrito
+            function updateCartUI() {
+                const items = cartItemsContainer.querySelectorAll('.cart-item');
+                const cartCounter = document.querySelector('.cart-counter');
+
+                if (items.length === 0) {
+                    emptyCartMessage.style.display = 'flex';
+                    cartTotals.style.display = 'none';
+                    cartCounter.textContent = '0';
+                    return;
+                }
+
+                emptyCartMessage.style.display = 'none';
+                cartTotals.style.display = 'block';
+                cartCounter.textContent = items.length.toString();
+
+                let subtotal = 0;
+
+                items.forEach(item => {
+                    const priceText = item.querySelector('.cart-item-price').textContent.replace('$', '');
+                    const quantity = parseInt(item.querySelector('input').value);
+                    const price = parseFloat(priceText);
+                    subtotal += price * quantity;
+                });
+
+                // Actualizar totales
+                document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById('cart-shipping').textContent = `$0.00`;
+                document.getElementById('cart-total').textContent = `$${subtotal.toFixed(2)}`;
+            }
+
+            // Función pública para añadir al carrito
+            window.addToCart = function(product) {
+                const { title, platform, price, image } = product;
+
+                // Crear elemento del carrito
+                const cartProduct = document.createElement('div');
+                cartProduct.className = 'cart-item';
+                cartProduct.innerHTML = `
+                    <img src="${image}" alt="${title}" class="cart-item-img">
+                    <div class="cart-item-info">
+                        <div>
+                            <h5 class="cart-item-title">${title}</h5>
+                            <p class="cart-item-platform">${platform}</p>
+                        </div>
+                        <div class="cart-item-price fw-bold text-primary">$${price}</div>
+                        <div class="cart-item-controls">
+                            <div class="quantity-control">
+                                <button class="quantity-btn">-</button>
+                                <input type="text" value="1" readonly>
+                                <button class="quantity-btn">+</button>
+                            </div>
+                            <button class="cart-remove-btn" aria-label="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                `;
+                
+                // Añadir al carrito
+                cartItemsContainer.prepend(cartProduct);
+                updateCartUI();
+                openCart();
+                
+                // Respuesta visual
+                const toast = document.createElement('div');
+                toast.classList.add('position-fixed', 'bottom-0', 'end-0', 'p-3');
+                toast.style.zIndex = '1050';
+                toast.innerHTML = `
+                    <div class="toast align-items-center text-white bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                        <极 class="d-flex">
+                            <div class="toast-body">
+                                <i class="fas fa-check-circle me-2"></i> ${title} añadido al carrito
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(toast);
+                
+                // Eliminar después de 3 segundos
+                setTimeout(() => {
+                    toast.remove();
+                }, 3000);
+            };
+
+            // ================== PARTE IMPORTANTE ==================
+            // Consumo de la API RAWG para obtener juegos
+            function fetchGames() {
+                // Mostrar spinner de carga
+                apiLoading.querySelector('.spinner-border').style.display = 'block';
+                
+                // USO DE API KEY PERSONAL PARA RAWG
+                const API_KEY = '41d36e4ceece409ca3e8d65e8e752729'; // Tu clave API de RAWG
+                const API_URL = `https://api.rawg.io/api/games?key=${API_KEY}&page_size=12`;
+                
+                fetch(API_URL)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Ocultar spinner
+                        apiLoading.querySelector('.spinner-border').style.display = 'none';
+                        apiLoading.innerText = '';
+                        
+                        // Procesar los resultados
+                        renderGames(data.results);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching games:', error);
+                        apiLoading.querySelector('.spinner-border').style.display = 'none';
+                        apiLoading.innerHTML = `
+                            <div class="alert alert-danger">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                Error al cargar juegos. Mostrando catálogo de respaldo...
+                            </div>
+                        `;
+                        
+                        // Catálogo de respaldo
+                        renderGames(getBackupGames());
+                    });
+            }
+            
+            // Renderizar juegos en el DOM
+            function renderGames(games) {
+                gamesContainer.innerHTML = '';
+                
+                games.forEach(game => {
+                    const platforms = [];
+                    game.platforms.forEach(p => {
+                        platforms.push(p.platform.name);
+                    });
+                    
+                    // GENERADOR DE PRECIOS REALISTA 
+                    const priceValue = (Math.floor(Math.random() * 50) + 10).toFixed(2);
+                    
+                    // Construir tarjeta de producto
+                    const card = document.createElement('div');
+                    card.className = 'col-md-4 col-sm-6 mb-4';
+                    card.innerHTML = `
+                        <div class="card product-card h-100">
+                            <img src="${game.background_image || 'https://via.placeholder.com/400x225?text=Juego'}" 
+                                 alt="${game.name}" 
+                                 class="card-img-top">
+                            <div class="card-body">
+                                <div class="product-info">
+                                    <h3>${game.name}</h3>
+                                    <div class="platform">${platforms.join(', ')}</div>
+                                    <div class="price">$${priceValue} <span class="badge bg-success ms-2">Destacado</span></div>
+                                    <button class="btn btn-primary w-100 mt-2">Añadir al carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Evento para añadir al carrito
+                    const button = card.querySelector('button');
+                    button.addEventListener('click', () => {
+                        window.addToCart({
+                            title: game.name,
+                            platform: platforms.join(', '),
+                            price: priceValue,
+                            image: game.background_image || 'https://via.placeholder.com/400x225?text=Juego'
+                        });
+                    });
+                    
+                    gamesContainer.appendChild(card);
+                });
+            }
+            
+            // Juegos de respaldo en caso de que la API falle
+            function getBackupGames() {
+                return [
+                    {
+                        id: 5100,
+                        name: "The Witcher 3: Wild Hunt",
+                        background_image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co4a7a.png",
+                        platforms: [
+                            { platform: { name: "PlayStation 4" } },
+                            { platform: { name: "Xbox One" } },
+                            { platform: { name: "PC" } }
+                        ]
+                    },
+                    {
+                        id: 1890,
+                        name: "Elden Ring",
+                        background_image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1w0w.png",
+                        platforms: [
+                            { platform: { name: "PlayStation 5" } },
+                            { platform: { name: "Xbox Series X|S" } },
+                            { platform: { name: "PC" } }
+                        ]
+                    },
+                    {
+                        id: 2452,
+                        name: "Red Dead Redemption 2",
+                        background_image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.png",
+                        platforms: [
+                            { platform: { name: "PlayStation 4" } },
+                            { platform: { name: "Xbox One" } },
+                            { platform: { name: "PC" } }
+                        ]
+                    }
+                ];
+            }
+            
+            // ====== MANEJADOR DE FORMULARIO CON FORMSPREE ======
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Obtener valores del formulario
+                    const nameInput = document.getElementById('contact-name');
+                    const emailInput = document.getElementById('contact-email');
+                    const messageInput = document.getElementById('contact-message');
+                    
+                    // Validación básica
+                    if (!nameInput.value.trim()) {
+                        nameInput.classList.add('is-invalid');
+                        return false;
+                    } else {
+                        nameInput.classList.remove('is-invalid');
+                    }
+                    
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(emailInput.value)) {
+                        emailInput.classList.add('is-invalid');
+                        return false;
+                    } else {
+                        emailInput.classList.remove('is-invalid');
+                    }
+                    
+                    if (!messageInput.value.trim()) {
+                        messageInput.classList.add('is-invalid');
+                        return false;
+                    } else {
+                        messageInput.classList.remove('is-invalid');
+                    }
+                    
+                    // Ocultar texto y mostrar spinner
+                    submitBtnText.style.display = 'none';
+                    sendingMessage.style.display = 'block';
+                    submitButton.disabled = true;
+                    
+                    // Preparar datos para Formspree
+                    const formData = new FormData(this);
+                    
+                    // Enviar datos a Formspree
+                    fetch('https://formspree.io/f/mwpodngv', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Éxito - mostrar mensaje
+                            formMessages.innerHTML = `
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <i class="fas fa-check-circle me-2"></i>¡Mensaje enviado con éxito! Te responderemos pronto.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            `;
+                            contactForm.reset();
+                        } else {
+                            throw new Error('Formulario falló');
+                        }
+                    })
+                    .catch(error => {
+                        formMessages.innerHTML = `
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="fas fa-exclamation-triangle me-2"></i>Error al enviar. Por favor intenta más tarde.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        `;
+                        console.error('Error:', error);
+                    })
+                    .finally(() => {
+                        // Restaurar botón
+                        submitBtnText.style.display = 'inline';
+                        sendingMessage.style.display = 'none';
+                        submitButton.disabled = false;
+                    });
+                });
+            }
+            
+            // Iniciar la carga de juegos
+            fetchGames();
         });
     </script>
 </body>
