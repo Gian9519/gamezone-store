@@ -1,122 +1,130 @@
+# 🎮 GameZone Store - E-commerce de Videojuegos
 
-```markdown
-# 🎮 GameZone Store – Tu Tienda de Videojuegos Next Level
+![Banner](https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)
 
-![GameZone Banner](img/gaming-banner.jpg)
-
-**GameZone Store** es una experiencia de e-commerce inmersiva para gamers, desarrollada con las últimas tecnologías web. Explora un catálogo dinámico, gestión avanzada de carrito y compras interactivas.
+**GameZone Store** es una tienda de videojuegos completa que combina diseño moderno con funcionalidades avanzadas de e-commerce. Consume datos en tiempo real desde una API externa y ofrece un sistema de carrito con persistencia local.
 
 ---
 
-## 🌟 Características Destacadas
+## 🌟 Características Implementadas
 
-### 🛒 Sistema Inteligente de Carrito
-- ✅ Añadir/eliminar productos en tiempo real
-- 📱 Persistencia de datos con **LocalStorage**
-- 💰 Cálculo automático de totales e impuestos
-- 🚀 Actualización dinámica sin recargar la página
-- 📦 Gestión de múltiples items con selector de cantidades
+### 🛒 Sistema de Carrito
+- Añadir productos con notificaciones inmediatas
+- Persistencia en localStorage
+- Gestión de cantidades
+- Cálculo dinámico de totales
 
-### 🔌 Integración con APIs
-- 🌐 Fetch de productos desde [RAWG API](https://api.rawg.io/docs/)
-- 📨 Envío de órdenes a backend personalizado
-- 📩 Formulario de contacto con **Formspree**
-- 🔄 Actualización en tiempo real de stock disponible
+### 🔌 Integraciones
+- **[RAWG API](https://api.rawg.io/docs/)** para catálogo dinámico
+- **Formspree** para formularios funcionales
+- Backup data para fallos de conexión
 
-### 🎮 Experiencia Gamer
-- 🕹️ Catálogo filtrable por género y plataforma
-- 🎥 Trailers incrustados de YouTube
-- ⭐ Sistema de reseñas y calificaciones
-- 🔍 Búsqueda inteligente de productos
+### 🖥️ Interfaz de Usuario
+- Diseño responsive con Bootstrap 5
+- Tipografía gaming con Google Fonts
+- Animaciones y efectos visuales
+- Optimización avanzada de imágenes
+
+### 🔍 SEO y Accesibilidad
+- Metatags optimizados
+- Atributos alt descriptivos
+- Navegación por teclado
+- Total responsividad
 
 ---
 
 ## 🛠️ Stack Tecnológico
+- **HTML5** - Estructura semántica
+- **CSS3** - Variables personalizadas
+- **JavaScript ES6+** - Lógica interactiva
+- **Bootstrap 5** - Componentes UI
 
-### Frontend
-- **HTML5** (Semántico + Microdatos)
-- **CSS3** (Animaciones, Variables CSS, Grid/Flexbox)
-- **JavaScript ES6+** (Carrito dinámico)
-- **Bootstrap 5** + Personalización
-- **Swiper.js** (Sliders interactivos)
-
-### Integraciones
-- 🎮 [RAWG Video Games Database API](https://rawg.io/apidocs)
-- 📧 **Formspree** para formularios
-- 📊 **Google Analytics 4** integrado
+## 🏗️ Estructura de Proyecto
+```
+gamezone-store/
+├── index.html          # Página principal
+├── README.md           # Documentación
+├── styles.css          # Estilos globales
+└── script.js           # Lógica de la aplicación
+```
 
 ---
 
-## 🚀 Instalación Local
-
+## 🚀 Instalación y Uso
 1. Clona el repositorio:
 ```bash
 git clone https://github.com/Gian9519/gamezone-store.git
 cd gamezone-store
 ```
 
-2. Instala las dependencias (opcional para Sass):
-```bash
-npm install
+2. Abre `index.html` en tu navegador
+
+> **Nota:** No requiere dependencias externas
+
+---
+
+## 🌐 Demo Online
+**URL pública:**  
+[https://gian9519.github.io/gamezone-store](https://gian9519.github.io/gamezone-store)
+
+---
+
+## ✅ Funcionalidades Clave
+1. **Catálogo de Productos:**
+   - Fetch API a RAWG
+   - Filtros por plataforma
+   - Cards responsivas
+
+2. **Carrito de Compras:**
+   - Persistencia en localStorage
+   - Edición en tiempo real
+   - Simulación de compra
+
+3. **Formulario de Contacto:**
+   - Validación integrada
+   - Envío via Formspree
+   - Estados de carga visuales
+
+---
+
+## 🔍 Ejemplos de Código
+```javascript
+// API RAWG Games
+const API_KEY = '41d36e4ceece409ca3e8d65e8e752729';
+fetch(`https://api.rawg.io/api/games?key=${API_KEY}`)
+  .then(response => response.json())
+  .then(renderGames);
 ```
 
-3. Inicia el servidor local:
-```bash
-npx live-server --port=5500
+```javascript
+// Persistencia del carrito
+function saveCart() {
+  const items = [...cartItemsContainer.children];
+  const cartData = items.map(item => ({
+    title: item.querySelector('.cart-item-title').textContent,
+    price: parseFloat(item.querySelector('.cart-item-price').textContent.replace('$', ''))
+  }));
+  localStorage.setItem('cart', JSON.stringify(cartData));
+}
 ```
 
 ---
 
-## 🔍 SEO & Accesibilidad
-
-### Optimización SEO
-- 🏷️ Meta tags personalizados (Open Graph, Twitter Cards)
-- 🖼️ Lazy loading en imágenes
-- 📝 Schema Markup para productos
-- 🚀 Performance 90+ en Lighthouse
-- 📈 Sitemap.xml generado automáticamente
-
-### Accesibilidad
-- ♿ Navegación por teclado
-- 🎨 Contraste AA/AAA cumplido
-- 🔊 Screen reader friendly
-- 🏷️ Etiquetas ARIA en elementos interactivos
-- 🌐 Idioma definido + dirección de texto
+## 🌟 Próximos Desarrollos
+- Sistema de búsqueda
+- Filtros avanzados
+- Login de usuarios
+- Historial de compras
 
 ---
 
-## 🌐 Demo en Vivo
-
-▶️ **Visita la tienda:** [gamezone-store.com](https://gian9519.github.io/gamezone-store)  
-📂 **Código fuente:** [Repositorio GitHub](https://github.com/Gian9519/gamezone-store)
-
----
-
-## 🕹️ Estructura del Proyecto
-
-```
-gamezone-store/
-
-```
-
----
-
-## 🤝 Contribuciones
-
-¡Aportes bienvenidos! Sigue estos pasos:
+## 🤝 Contribuir
 1. Haz fork del proyecto
-2. Crea tu feature branch (`git checkout -b feature/awesome-feature`)
-3. Commit your changes (`git commit -m 'Add some awesome feature'`)
-4. Push al branch (`git push origin feature/awesome-feature`)
+2. Crea tu rama (`git checkout -b feature/nueva-funcionalidad`)
+3. Haz commit de tus cambios (`git commit -am 'Nueva funcionalidad'`)
+4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
 5. Abre un Pull Request
 
 ---
 
-## 📄 Licencia
-
-Distribuido bajo MIT License. Ver `LICENSE` para más información.
-
----
-
-**Hecho con ❤️ y 🕹️ por [Gianluca Pippolo](https://github.com/Gian9519) | 🚀 ¡Game On!**
-```
+**Desarrollado por [Gianluca Pippolo](https://github.com/Gian9519)**
